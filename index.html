@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<title>M5-Miniproject</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<!-- Chart.js + datalabels -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class=""> 
+
+<!-- bubble bg -->
+<canvas id="bubbles"></canvas>
+
+<header>
+  <div>
+    <h1>🐱 M5-Miniproject</h1>
+    <div class="subtitle"> Web đo thời gian thực 🎰</div>
+  </div>
+  <div class="header-right">
+    <strong>Sinh viên:</strong> Dương Thảo Vy<br>
+    <strong>GVHD:</strong> Võ Hồng Hải
+  </div>
+</header>
+
+<div class="controls">
+  <select id="stationSelect" class="select" title="Chọn station">
+    <option value="https://z2c6um5ew3.execute-api.ap-southeast-1.amazonaws.com/data?station=station_01">station_01</option>
+    <option value="https://z2c6um5ew3.execute-api.ap-southeast-1.amazonaws.com/data?station=station_02">station_02</option>
+    <option value="https://z2c6um5ew3.execute-api.ap-southeast-1.amazonaws.com/data?station=station_03" selected>station_03</option>
+  </select>
+  <button id="pauseBtn" class="btn">Pause</button>
+  <button id="clearBtn" class="btn">Clear</button>
+
+  <!-- THEME SELECT -->
+  <div class="theme-select" id="themeSelectContainer" aria-hidden="false">
+    <div class="theme-pill active" data-theme="pastel" id="theme-pill-pastel" title="Pastel (mặc định)">🌸 Pastel</div>
+    <div class="theme-pill" data-theme="batman" id="theme-pill-batman" title="Batman (Dark)">🦇 Batman</div>
+    <div class="theme-pill" data-theme="phoenix" id="theme-pill-phoenix" title="Phoenix (Ruby)">🔥 Phoenix</div>
+  </div>
+
+  <div class="status" id="status">Status: idle</div>
+</div>
+
+<!-- mini cards -->
+<div class="mini-grid">
+  <div class="mini" id="mini-temp"><div class="label">Temperature</div><div class="value" id="v-temp">-- °C</div></div>
+  <div class="mini" id="mini-hum"><div class="label">Humidity</div><div class="value" id="v-hum">-- %</div></div>
+  <div class="mini" id="mini-cps"><div class="label">CPS</div><div class="value" id="v-cps">--</div></div>
+  <div class="mini" id="mini-usv"><div class="label">uSv</div><div class="value" id="v-usv">--</div></div>
+  <div class="mini" id="mini-counts"><div class="label">Counts</div><div class="value" id="v-counts">--</div></div>
+</div>
+
+<!-- charts -->
+<div class="charts">
+  <div class="chart-card" data-chart="temp">
+    <button class="zoom-btn">🔍</button>
+    <div class="chart-title">Temperature (°C)</div>
+    <div class="chart-wrap"><canvas id="chart-temp"></canvas></div>
+    <!-- kitty for this chart -->
+    <img id="kitty-temp" class="kitty-img" src="" alt="kitty-temp" style="display:none">
+  </div>
+
+  <div class="chart-card" data-chart="hum">
+    <button class="zoom-btn">🔍</button>
+    <div class="chart-title">Humidity (%)</div>
+    <div class="chart-wrap"><canvas id="chart-hum"></canvas></div>
+    <img id="kitty-hum" class="kitty-img" src="" alt="kitty-hum" style="display:none">
+  </div>
+
+  <div class="chart-card" data-chart="cps">
+    <button class="zoom-btn">🔍</button>
+    <div class="chart-title">CPS (count/s)</div>
+    <div class="chart-wrap"><canvas id="chart-cps"></canvas></div>
+    <img id="kitty-cps" class="kitty-img" src="" alt="kitty-cps" style="display:none">
+  </div>
+
+  <div class="chart-card" data-chart="usv">
+    <button class="zoom-btn">🔍</button>
+    <div class="chart-title">uSv (µSv/h)</div>
+    <div class="chart-wrap"><canvas id="chart-usv"></canvas></div>
+    <img id="kitty-usv" class="kitty-img" src="" alt="kitty-usv" style="display:none">
+  </div>
+
+  <div class="chart-card" data-chart="counts">
+    <button class="zoom-btn">🔍</button>
+    <div class="chart-title">Counts (total)</div>
+    <div class="chart-wrap"><canvas id="chart-counts"></canvas></div>
+    <img id="kitty-counts" class="kitty-img" src="" alt="kitty-counts" style="display:none">
+  </div>
+</div>
+
+<!-- watermark bottom-right -->
+<div class="watermark">Dương Thảo Vy</div>
+
+<script src="script.js" defer></script>
+</body>
+</html>
